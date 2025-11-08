@@ -1,7 +1,7 @@
 #ifndef CONSTANTES_H_
 #define CONSTANTES_H_
 
-#define ARCH_BIN "./inputBinario.bin"
+#define ARCH_BIN "inputBinario.bin"
 #define ARCH_TXT "outputTexto.txt"
 #define MODO_LECTURA "r"
 #define MODO_ESCRITURA "w"

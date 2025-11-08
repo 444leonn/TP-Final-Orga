@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define ARCH_BIN "./inputBinario.bin"
-#define ARCH_TXT "outputTexto.txt"
-#define MODO_LECTURA "r"
-#define MODO_ESCRITURA "w"
-#define ERROR_APERTURA "Error, al abrir archivo."
-#define EXITO_APERTURA "Archivos Abiertos correctamente."
-#define ERROR -1
+#include "src/constantes.h"
 
 void escribir_caracteres(FILE *archivo, char *caracteres)
 {
@@ -46,7 +40,6 @@ int main()
 		escribir_caracteres(archivo_texto, caracteres);
 
 		cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario);
-
 	}
 
 	fclose(archivo_binario);
