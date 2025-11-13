@@ -3,7 +3,7 @@
 
 #define ARCH_BIN "inputBinario.bin"
 #define ARCH_TXT "outputTexto.txt"
-#define MODO_LECTURA "r"
+#define MODO_LECTURA "rb"
 #define MODO_ESCRITURA "w"
 #define ERROR_APERTURA "Error, al abrir archivo."
 #define EXITO_APERTURA "Archivos Abiertos correctamente."
