@@ -3,15 +3,16 @@
 
 #include "src/constantes.h"
 
+extern char *codificar(char *bytes, size_t agregar_iguales);
+
 void escribir_caracteres(FILE *archivo, char *caracteres)
 {
 	if (archivo == NULL)
 		return;
 
-	fprintf(archivo, "%s", caracteres);
+	for (int i = 0; i < 4; i++)
+		fprintf(archivo, "%c", caracteres[i]);
 }
-
-char *codificar(char *bytes, size_t cantidad_bytes, size_t agregar_iguales);
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
 	}
 	printf(EXITO_APERTURA "\n");
 
-	char bytes[3];
+	unsigned char bytes[3];
 	size_t cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario);
 	while (!feof(archivo_binario)) {
 		size_t agregar_iguales = 0;
@@ -35,7 +36,7 @@ int main()
 			agregar_iguales = 1;
 			bytes[2] = 0;
 		}
-		char *caracteres = codificar(bytes, 3, agregar_iguales);
+		char *caracteres = codificar(bytes, agregar_iguales);
 
 		escribir_caracteres(archivo_texto, caracteres);
 
