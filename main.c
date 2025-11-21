@@ -6,12 +6,19 @@
 
 extern char *codificar(char *bytes, size_t agregar_iguales);
 
-void escribir_caracteres(FILE *archivo, char *caracteres, size_t cantidad_caracteres)
+void escribir_caracteres(FILE *archivo, char *caracteres)
 {
 	if (archivo == NULL)
 		return;
 
-	for (int i = 0; i < cantidad_caracteres; i++)
+	int i = 0;
+	for (i = 0; i < 4; i++)
+		fprintf(archivo, "%c", caracteres[i]);
+	if (caracteres[i] == '=') {
+		fprintf(archivo, "%c", caracteres[i]);
+		i++;
+	}
+	if (caracteres[i] == '=')
 		fprintf(archivo, "%c", caracteres[i]);
 }
 
@@ -26,8 +33,8 @@ int main()
 	printf(EXITO_APERTURA "\n");
 
 	unsigned char bytes[3];
-	size_t cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario);
-	while (!feof(archivo_binario)) {
+	size_t cant_leidos;
+	while ((cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario)) > 0) {
 		size_t agregar_iguales = 0;
 		if (cant_leidos == 1) {
 			agregar_iguales = 2;
@@ -39,10 +46,7 @@ int main()
 		}
 		char *caracteres = codificar(bytes, agregar_iguales);
 
-		size_t cantidad = strlen(caracteres);
-		escribir_caracteres(archivo_texto, caracteres, cantidad);
-
-		cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario);
+		escribir_caracteres(archivo_texto, caracteres);
 	}
 
 	fclose(archivo_binario);
