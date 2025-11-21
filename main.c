@@ -1,16 +1,17 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 #include "src/constantes.h"
 
 extern char *codificar(char *bytes, size_t agregar_iguales);
 
-void escribir_caracteres(FILE *archivo, char *caracteres)
+void escribir_caracteres(FILE *archivo, char *caracteres, size_t cantidad_caracteres)
 {
 	if (archivo == NULL)
 		return;
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < cantidad_caracteres; i++)
 		fprintf(archivo, "%c", caracteres[i]);
 }
 
@@ -38,7 +39,8 @@ int main()
 		}
 		char *caracteres = codificar(bytes, agregar_iguales);
 
-		escribir_caracteres(archivo_texto, caracteres);
+		size_t cantidad = strlen(caracteres);
+		escribir_caracteres(archivo_texto, caracteres, cantidad);
 
 		cant_leidos = fread(bytes, sizeof(char), 3, archivo_binario);
 	}
