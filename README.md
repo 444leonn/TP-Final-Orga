@@ -44,8 +44,8 @@ En donde se reciben los tres bytes ya leídos y la cantidad de iguales que se de
 Se utiliza la convención de llamada a funciones desde C para Linux, por lo que se toman como registros para los parámetros de la función los registros `rdi` y `rsi`. Y para el valor a retornar el registro `rax`
 
 ``` c
-  rax                 rdi         rsi
-   ↓                   ↓           ↓
+    rax            rdi            rsi
+     ↓              ↓              ↓
 char *codificar(char *bytes, size_t agregar_iguales)
 ```
 
