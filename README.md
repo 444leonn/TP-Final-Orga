@@ -1,4 +1,4 @@
-#  TP Final Organizacion del Computador
+# TP Final Organizacion del Computador
 
 ## Integrantes
 
@@ -49,7 +49,3 @@ char *codificar(char *bytes, size_t agregar_iguales)
 ```
 
 Ademas estos registros tambien son utilizados ciertos registros adicionales que permiten realizar distintas operaciones, como el acceso a indices, o valores empleados en contadores de bucle.
-
-; Guardar cantidad de '=' en r12
-
-; Combinar los 3 bytes usando shl de desplazamiento (explicar que quedan en r13)
