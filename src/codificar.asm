@@ -25,15 +25,14 @@ codificar:
     mov al, byte [rdi + 2]
     mov r13, rax
     
-    ; contador de loop
-    xor r14, r14
-    
     ; puntero a resultado
     lea rbx, [rel resultado]
     
-.loop_codificar:
+    ; contador de loop
+    xor r14, r14
+loop_codificar:
     cmp r14, 4
-    jge .agregar_iguales
+    jge agregar_iguales
     
     ; calcular cuantos bits desplazar: 18, 12, 6, 0
     mov rax, 3
@@ -55,25 +54,21 @@ codificar:
     mov byte [rbx + r14], dl
     
     inc r14
-    jmp .loop_codificar
+    jmp loop_codificar
     
-.agregar_iguales:
+agregar_iguales:
     cmp r12, 0
-    je .fin
+    je fin
     
     ; indice despues de los 4 caracteres
     mov rax, 4
-    
-.loop_iguales:
-    cmp r12, 0
-    je .fin
-    
+loop_iguales:
     mov byte [rbx + rax], '='
     inc rax
     dec r12
-    jmp .loop_iguales
+    jnz loop_iguales
     
-.fin: 
+fin: 
     ; retorna puntero a resultado
     mov rax, rbx
     
